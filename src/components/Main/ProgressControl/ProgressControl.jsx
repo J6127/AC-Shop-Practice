@@ -4,8 +4,7 @@ import { useState } from 'react';
 import Address from '../Step/Step1';
 import Shipping from '../Step/Step2';
 import CreditCard from '../Step/Step3';
-// 這邊要用ReactComponent 不要直接引入會失效
-
+// 這邊要用ReactComponent 不要直接引入
 
 export default function ProgressControl(){
 

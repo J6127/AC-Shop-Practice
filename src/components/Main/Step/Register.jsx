@@ -1,9 +1,9 @@
-import Address from './Step1';
-import Shipping from './Step2';
-import CreditCard from './Step3';
 import StepProgress from '../StepProgress/StepProgress';
+import { useState } from 'react';
 
 export default function Register(){
+  const [phase, setPhase] = useState ("address");//修改定義phase
+  
     return(
             <section
               className="register-container col col-lg-6 col-sm-12"
@@ -11,11 +11,9 @@ export default function Register(){
               data-total-price="0"
             >
               <h2 className="register-title col col-11">結帳</h2>
-              <StepProgress />
+              <StepProgress phase ={phase} setPhase={setPhase}/>
               <section className="form-container col col-12">
-                <Address />
-                <Shipping />
-                <CreditCard />
+              
               </section>
             </section>
           );
