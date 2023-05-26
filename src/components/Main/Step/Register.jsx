@@ -1,6 +1,6 @@
-import Step1 from './Step1';
-import Step2 from './Step2';
-import Step3 from './Step3';
+import Address from './Step1';
+import Shipping from './Step2';
+import CreditCard from './Step3';
 import StepProgress from '../StepProgress/StepProgress';
 
 export default function Register(){
@@ -13,9 +13,9 @@ export default function Register(){
               <h2 className="register-title col col-11">結帳</h2>
               <StepProgress />
               <section className="form-container col col-12">
-                <Step1 />
-                <Step2 />
-                <Step3 />
+                <Address />
+                <Shipping />
+                <CreditCard />
               </section>
             </section>
           );

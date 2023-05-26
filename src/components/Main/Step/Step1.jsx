@@ -1,4 +1,4 @@
-export default function step1() {
+export default function Address() {
     return (
         <form className="col col-12" data-phase="address">
             <h3 className="form-title">寄送地址</h3>

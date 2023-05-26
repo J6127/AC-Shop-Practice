@@ -1,4 +1,4 @@
-export default function Step3() {
+export default function CreditCard() {
     return (
         <form className="col col-12" data-phase="credit-card">
             <h3 className="form-title">付款資訊</h3>
