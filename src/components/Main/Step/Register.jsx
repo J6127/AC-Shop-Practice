@@ -3,7 +3,7 @@ import Step2 from './Step2';
 import Step3 from './Step3';
 import StepProgress from '../StepProgress/StepProgress';
 
-export default function Register({step,setStep}){
+export default function Register({step}){
     return(
             <section
               className="register-container col col-lg-6 col-sm-12"
