@@ -37,7 +37,7 @@ export default function Cart (){
   const handleMinusClick = (itemId) => {
     setCartItems((prevItems) =>
       prevItems.map((item) => {
-        if (item.id === itemId && item.quantity > 1) {
+        if (item.id === itemId && item.quantity > 0) { //要歸零
           return { ...item, quantity: item.quantity - 1 };
         }
         return item;

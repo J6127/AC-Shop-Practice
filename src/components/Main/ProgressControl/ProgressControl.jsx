@@ -1,68 +1,54 @@
-import { ReactComponent as RightArrow } from '../../../icons/right-arrow.svg';
+import  {ReactComponent as RightArrow } from '../../../icons/right-arrow.svg';
 import { ReactComponent as LeftArrow } from '../../../icons/left-arrow.svg';
-import { useState } from 'react';
-import Address from '../Step/Step1';
-import Shipping from '../Step/Step2';
-import CreditCard from '../Step/Step3';
 // 這邊要用ReactComponent 不要直接引入
 
-export default function ProgressControl(){
-
-const [phase, setPhase] =useState("address"); //預設值
-function handleClickNext() {
-if (phase === "address") setPhase ("shipping") 
-else if (phase === "shipping") setPhase ("creditCard")   
-};
-function handleClickPrev(){
-  if (phase === "shipping") setPhase ("address") 
-  else if (phase ==="creditCard") setPhase ("shipping")   
-  };
-
-     return(
-    <section className="progress-control-container col col-lg-6 col-sm-12">
-      {phase === "address" && 
-        <>
-          <Address />
-          <section className="button-group col col-12">
-            <button className="next cursor-point" onClick={handleClickNext}>
-              下一步   
-              <RightArrow />
-            </button>
-          </section>
-        </>
-      }
-      {phase === "shipping" && 
-        <>
-          <Shipping />
-          <section className="button-group col col-12">
-            <button className="prev" onClick={handleClickPrev}>
-              <LeftArrow />
-              上一步
-            </button>
-            <button className="next cursor-point" onClick={handleClickNext}>
-              下一步
-              <RightArrow />
-            </button>
-          </section>
-        </>
-      }
-      {phase === "creditCard" && 
-        <>
-          <CreditCard />
-          <section className="button-group col col-12">
-            <button className="prev" onClick={handleClickPrev}>
-              <LeftArrow />
-              上一步
-            </button>
-            <button className="next">
-              確認下單
-            </button>
-          </section>
-        </>
-      }
-    </section>
+const NextStepChange = ({handleNextClick}) => {
+  return (
+    <button className="next cursor-point" onClick={handleNextClick}>
+      下一步
+      <RightArrow />
+    </button>
   )
 }
+
+const PreStepChange = ({handlePreClick}) => {
+  return (
+    <button className="prev cursor-point" onClick={handlePreClick}>
+      <LeftArrow />
+      上一步
+    </button>
+  )
+}
+export default function ProgressControl({step, handleNextClick,handlePreClick}) {
+  return(
+
+    <section className="progress-control-container col col-lg-6 col-sm-12">
+    {step === 1 && (
+      <section className="button-group col col-12" data-phase={step}>
+        <NextStepChange handleNextClick={handleNextClick} />
+      </section>
+    )}
+    
+    {step  === 2 && (
+      <section className="button-group col col-12" data-phase={step}>
+        <PreStepChange handlePreClick={handlePreClick} />
+        <NextStepChange handleNextClick={handleNextClick} />
+      </section>
+    )}
+
+    {step === 3 && (
+      <section className="button-group col col-12" data-phase={step}>
+        <PreStepChange handlePreClick={handlePreClick} />
+        <button className="next cursor-point">
+          確認下單
+        </button>
+      </section>
+    )}
+  </section>
+  
+  )
+}
+  
 
 
 

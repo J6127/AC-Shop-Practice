@@ -85,7 +85,7 @@ section.progress-container {
                 font-size: 12px;
                 font-weight: 700;
                 line-height: 24px;
-                text-align: left; //原本為center
+                text-align: center;
                 color: inherit;
             }
             .icon {
@@ -153,6 +153,7 @@ $phase-map: (1: 'address', 2: 'shipping', 3: 'credit-card');
                         }
                     }
                 }
+                
             }
 
             // form
