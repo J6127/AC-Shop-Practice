@@ -1,6 +1,9 @@
 import  {ReactComponent as RightArrow } from '../../../icons/right-arrow.svg';
 import { ReactComponent as LeftArrow } from '../../../icons/left-arrow.svg';
 // 這邊要用ReactComponent 不要直接引入
+import { useContext } from 'react';
+import { CartContext } from '../../Context/CartContext';
+import { CreditCardContext } from '../../Context/CreditCardContext';
 
 const NextStepChange = ({handleNextClick}) => {
   return (
@@ -20,8 +23,19 @@ const PreStepChange = ({handlePreClick}) => {
   )
 }
 export default function ProgressControl({step, handleNextClick,handlePreClick}) {
-  return(
+const {cartItems} =useContext(CartContext);
+const {cardHolder, cardNumber, expiryDate, ccv} =useContext(CreditCardContext);
+const handleOrderConfirmation =()=>{
+  console.log('Card Holder',cardHolder);
+  console.log('Card Number',cardNumber);
+  console.log('Expiry Date',expiryDate);
+  console.log('CCV',ccv);
+  const cartTotal= cartItems.reduce(
+    (total, item) => total+item.price* item.quantity,0);
+    console.log('Cart Total',cartTotal);
+};
 
+  return(
     <section className="progress-control-container col col-lg-6 col-sm-12">
     {step === 1 && (
       <section className="button-group col col-12" data-phase={step}>
@@ -39,7 +53,7 @@ export default function ProgressControl({step, handleNextClick,handlePreClick}) 
     {step === 3 && (
       <section className="button-group col col-12" data-phase={step}>
         <PreStepChange handlePreClick={handlePreClick} />
-        <button className="next cursor-point">
+        <button className="next cursor-point" onClick={handleOrderConfirmation}>
           確認下單
         </button>
       </section>

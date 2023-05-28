@@ -8,7 +8,7 @@ export default function Address() {
                         <div className="input-label">稱謂</div>
                         <div className="select-container">
                             <select>
-                                <option defaultValue="mr" selected>
+                                <option defaultValue="mr">
                                     先生
                                 </option>
                                 <option value="ms">女士</option>

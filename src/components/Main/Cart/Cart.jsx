@@ -1,57 +1,16 @@
 import { ReactComponent as Minus } from '../../../icons/minus.svg';
 import { ReactComponent as Plus } from '../../../icons/plus.svg';
-import { useState } from 'react';
-
-//test info
-const cartData = [
-  {
-    id: '1',
-    name: '貓咪罐罐',
-    img: 'https://picsum.photos/300/300?text=1',
-    price: 100,
-    quantity: 2,
-  },
-  {
-    id: '2',
-    name: '貓咪干干',
-    img: 'https://picsum.photos/300/300?text=2',
-    price: 200,
-    quantity: 1,
-  },
-]
+//import { useState } from 'react';
+//import {useContext } from 'react';
+//import { CartContext } from '../../Context/CartContext';
+import useCart from './useCart';
 
 export default function Cart (){
-  const [cartItems,setCartItems] = useState (cartData);
+  const {cartItems, handleMinusClick,handlePlusClick, calculateSubtotal}= useCart();
+  //const [cartItems,setCartItems] = useState (cartData);
+  //const {cartItems,setCartItems} = useContext(CartContext);
 
-  const handlePlusClick = (itemId) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) => {
-        if (item.id === itemId) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      })
-    );
-  };
   
-  const handleMinusClick = (itemId) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) => {
-        if (item.id === itemId && item.quantity > 1) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-        return item;
-      })
-    );
-  };
-
-  const calculateSubtotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-  };
-
 return (
   <section className="cart-container col col-lg-5 col-sm-12">
   <h3 className="cart-title">購物籃</h3>
@@ -83,7 +42,7 @@ return (
   </section>
   <section className="cart-info shipping col col-12">
     <div className="text">運費</div>
-    <div className="price"></div>
+    <div className="price">免費</div>
   </section>
   <section className="cart-info total col col-12">
     <div className="text">小計</div>
